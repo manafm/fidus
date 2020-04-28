@@ -1,0 +1,67 @@
+@charset "UTF-8";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+//
+// Helpers : tools, variables, mixins, ...
+//
+@import "helpers/breakpoints";
+@import "helpers/variables";
+@import "helpers/functions";
+@import "helpers/mixins";
+@import "helpers/extends";
+@import "materialTheme/theme";
+@import "materialTheme/material";
+
+//
+// Vendors : ce qui vient de l"extérieur, plugins, frameworks...
+//
+//@import "vendors/css/all.css";
+
+
+//
+// Vendors-extensions : si on modifie un vendor, pour ne pas modifier le fichier de base
+//
+
+
+//
+// Base : pour démarrer un projet
+//
+@import "base/normalize"; // ou un reset.scss
+@import "base/bootstrap-resp-override";
+//@import "base/no-responsive"; // bloc le responsive de bootstrap (a utiliser si besoin)
+@import "base/typography";
+
+
+//
+// Layout : grandes sections du travail
+//
+@import "layout/header";
+@import "layout/sidebar";
+@import "layout/navigation";
+@import "layout/footer";
+
+//
+// Components : petites sections du travail
+//
+@import "components/slider";
+@import "components/forms";
+@import "components/buttons";
+@import "components/share";
+@import "components/primeNG";
+
+//
+// Pages : si des pages sont des styles spécifiques
+//
+@import "pages/home";
+@import "pages/connexion";
+@import "pages/dashboard";
+@import "pages/roles";
+@import "pages/users";
+
+//
+// Browser : pour les conditions par browsers
+//
+
+//
+// ETC
+//

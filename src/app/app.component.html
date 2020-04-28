@@ -1,1 +1,28 @@
-<router-outlet></router-outlet>
+<header class="clearfix">
+  <div class="mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <app-navbar></app-navbar>
+      </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
+</header>
+
+<main class="panel">
+  <section class="main-actions" id="iwanttoscroll">
+    <div class="container">
+      <router-outlet></router-outlet>
+      <app-spinner></app-spinner>
+    </div>
+    <app-ui-notification></app-ui-notification>
+  </section>
+</main>
+
+
+<footer>
+  <app-footer></app-footer>
+</footer>

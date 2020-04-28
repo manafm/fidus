@@ -1,0 +1,39 @@
+/*
+* Buttons
+*/
+
+button.search{background:#0488BA!important;margin:10px 0!important;
+    .mat-button-wrapper{padding:0;@include line(40px);height:40px;width:40px;text-align:center;
+        .fa-search{@include line(40px);height:40px;width:40px;padding:0;text-align:center;float:none;}
+    }
+}
+
+.btn-wrapper{margin: 0;
+    @media (max-width: $sm){
+        .mat-flat-button{width:100%;margin:0 15px 15px 15px!important;
+        }
+    }
+}
+
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button{border-radius: 6px!important;}
+.mat-button-wrapper{width:100%;text-align:center;display:block;padding: 0 0 0 16px;
+    .mat-icon{float:right;@include line(36px);}
+}
+.mat-accent{margin-left:0!important;}
+
+.previous{margin-right:15px!important;
+    .mat-icon{float:left;}
+    .mat-button-wrapper{padding:0 16px 0 0;}
+}
+// icon table
+
+table{
+    .btn {padding:0 5px 0 0;
+        .mat-icon{color:$active;padding:0;@include transition;}
+        &:hover .mat-icon{color:$mat-blue-hover;}
+    }
+}
+
+@media (max-width: $sm){
+    //form .row:last-child .btn{width:100%;}
+}

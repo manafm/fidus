@@ -1,0 +1,103 @@
+/// RECHERCHE SIMPLE ///
+.mat-elevation-z8{margin-top:0!important;
+    td{width:20%;}
+}
+
+/// RECHERCHE AVANCEE ///
+
+
+/// ORGANISATIONS ///
+#organisation-tree,#enterprise-tree{margin-top:0!important;
+    .mat-icon-button{width:15px;margin-left:0!important;height:auto;line-height:24px!important;}
+    .mat-tree{background:none;width:100%;
+        div{display:inline-block;width:90%!important;@extend .text-style;
+            @media (max-width: $xs){
+                padding-left:5px;
+                .mat-icon{ width:auto;padding-right: 5px;}
+            }
+        }
+        .mat-icon{padding-left: 0px;}
+    }
+    .mat-tree-node{
+        min-height: 20px;
+    }
+    td{vertical-align:middle;padding:15px;@extend .text-style;}
+    th.mat-column-id, td.mat-column-id{width:15%;padding-left: 15px;}
+    th.mat-column-actions, td.mat-column-actions{width:10%;padding:0;}
+    th.mat-column-path, td.mat-column-path{width:30%;padding-left: 15px;}
+    th.mat-column-name, td.mat-column-name{width:45%;padding-left: 15px;}
+    .mat-button-focus-overlay, .mat-button-ripple{display:none;}
+    .end-node {@extend .text-style; .mat-icon{ padding-right: 5px;}}
+
+    @media (max-width: $xs){
+        .cdk-column-id{display:none;}
+        .cdk-column-path{display:none;}
+        td{padding:5px;}
+    }
+}
+
+/// MODIFIER UNE ORGANISATION ///
+
+
+
+/// AJOUTER UNE ORGANISATION ///
+app-organisation-tree {
+    .btn-wrapper .btn{margin:0 15px 0 0;
+    .material-icons{font-size:20px!important;}
+    }
+    h2:after{background:none!important;}
+}
+.wrapper-tree{width:100%;margin:30px 0 0 0;}
+#user-role-tree{width:100%;font-family:$roboto;@include font(16px);color:$text-color;margin: 0px 0 30px 0;
+    .mat-icon-rtl-mirror{vertical-align: middle;padding-left:0;}
+    .mat-warn{border:none;margin:0!important;max-height:30px;line-height:30px;color:#ffffff!important;font-size:14px;text-decoration:none!important;
+        .mat-icon{line-height:30px;}
+    }
+    .btn{float:none!important;@extend .link-style;@include font(14px);margin: 0 15px 0px 0;line-height:30px;border-right: 1px solid $border;
+                .material-icons{padding-left:5px;}
+    }
+      //organisations
+    .organisation-node{line-height:30px;clear:both;width:100%;@include clearfix;display:block;padding:15px 0;
+        .ng-star-inserted{float:left;cursor:pointer;font-weight:bold;
+            .mat-warn{padding:5px 10px;
+                span{padding-left:0;}
+            }
+        }
+        .col-sm-5{text-align:right;}
+        h3.resource-node{margin-left:30px;border-bottom:none;padding:0;}
+    }
+     //rôles
+        .role-node{line-height:30px;@include clearfix;border-bottom:1px solid $border;display:block;padding:15px 15px 15px 0;clear:both;margin-left:30px;
+
+            .technical{background:url('../img/tech.svg') no-repeat left center;padding:0 0 0 20px;}
+            .fonctionnal{background:url('../img/fonct.svg') no-repeat left center;padding:0 0 0 20px;}
+            .mat-warn{min-width:30px;min-height:30px;width:30px;height:30px;text-align:center;padding:0;
+                .mat-icon{padding-left:0!important;font-size:14px;float:none;}
+                .mat-button-wrapper{padding-left:0;}
+            }
+            .ng-star-inserted{float:left;cursor:pointer;}
+            .col-sm-5{text-align:right;}
+            h3.role-node{border-bottom:none;}
+
+
+    }
+    //ressources
+    .resource-node{@include clearfix;border-bottom:1px solid $border;display:block;padding:15px 0;clear:both;margin-left:60px;
+          .mat-warn{min-width:30px;min-height:30px;width:30px;height:30px;text-align:center;padding:0;
+                .mat-icon{padding-left:0!important;font-size:14px;float:none;}
+                .mat-button-wrapper{padding-left:0;}
+            }
+            .ng-star-inserted{float:left;cursor:pointer;}
+            .col-sm-5{text-align:right;}
+    }
+
+}
+
+
+// ROLE///
+app-role-list, app-resource-list{
+    @media (max-width: $sm){
+        .mat-form-field{width:85%;}
+        .mat-paginator-page-size {display:none;}
+    }
+}

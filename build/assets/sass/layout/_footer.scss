@@ -1,0 +1,42 @@
+/*
+* Footer
+*/
+
+footer{position:fixed;z-index:100;background:rgba(255,255,255, 1);width:100%;z-index:1;@include flexbox;@include align-items(center);
+    border-top:1px solid #D5D5D5;margin-top:60px 0 0 0;bottom:0;padding:30px 120px 30px 385px;
+    p{text-align:right;margin:0;@include font(12px);font-family:$roboto;}
+    ul{margin:0;padding:0;float:left;
+        li{display:inline-block;list-style-type:none;padding-right:30px;}
+        @media (max-width: $sm) {float:none;}
+    }
+    a{color:$text-color;text-decoration:underline;
+        &:hover{color:$active;}
+    }
+    
+    
+    @media (max-width: $sm) {
+        position:none;
+        margin:0;
+        padding:30px;
+        margin:30px auto 0 auto;text-align:center;
+        @include flex-direction(column);
+        ul{padding:0;}
+        p{text-align:center;padding:15px 0 0 0;}
+    }
+    
+    @media (max-width:$sm) and (min-width: $md) {
+        position:relative;
+    }
+  
+    
+}
+
+
+// material
+app-footer{width:100%;display:block;}
+
+  @media (min-width:$md) and (max-width:$x-lg) {
+      footer{
+        padding:30px 60px 30px 325px!important;
+      }
+    }
