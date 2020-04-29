@@ -4,14 +4,16 @@ const cors = require('cors')
 
 app.use(cors())
 
-app.get('/organisations', function (req, res) {
+app.get('/', function (req, res) {
   res.send(
     [
       {
-        name: 'toto'
+        name: 'toto',
+        age: 36
       },
       {
-        name: 'momo'
+        name: 'momo',
+        age: 18
       }
     ]
   )
