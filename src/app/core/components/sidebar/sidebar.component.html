@@ -1,0 +1,39 @@
+<header class="demo-drawer-header">
+  <a href="#"><img class="img-fluid" src="/assets/img/FIDUS.png" alt="IAM" title="IAM"></a>
+</header>
+<ul class="xs-visible">
+  <li>
+    <a routerLink="">
+      <mat-icon fontSet="fas" fontIcon="fa-user fa-lg"></mat-icon>
+    </a>
+  </li>D:\home\Fidus\fidus\src\app\i18n
+  <li class="lang">
+    <a (click)="changePreferredLanguage('fr')"
+       [attr.class]="this.translateService.currentLang == 'fr' ? 'link active': ''"
+       routerLink="{{location.path()}}">
+      Fr
+    </a>
+  </li>
+  <li class="lang">
+    <a (click)="changePreferredLanguage('nl')"
+       [attr.class]="this.translateService.currentLang == 'nl' ? 'link active': ''"
+       routerLink="{{location.path()}}">
+      Nl
+    </a>
+  </li>
+  <li class="lang">
+    <a (click)="changePreferredLanguage('en')"
+       [attr.class]="this.translateService.currentLang == 'en' ? 'link active': ''"
+       routerLink="{{location.path()}}">
+      En
+    </a>
+  </li>
+</ul>
+
+<nav class="mdl-navigation">
+  <a routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}" id="{{menuItem.title}}"
+     [routerLink]="[menuItem.path]">
+    <i class="{{menuItem.icon}}"></i>
+    {{menuItem.title | translate}}
+  </a>
+</nav>

@@ -1,0 +1,174 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+//COLORS///////////////////////////////////////////////////////////////////////////////////////
+$mat-active: (
+  50: #0488e2,
+  100: #0488dc,
+  200: #0488d4,
+  300: #0488c9,
+  400: #0488c2,
+  500: #0488BA,
+  600: #0381b0,
+  700: #0381a6,
+  800: #03819c,
+  900: #038193,
+  A100: #0488BA,
+  A200: #0381a6,
+  A400: #038193,
+  A700: #038173,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$mat-blue-hover:#038193;
+
+$mat-green: (
+  50: #E8F5E9,
+  100: #C8E6C9,
+  200: #A5D6A7,
+  300: #81C784,
+  400: #66BB6A,
+  500: #4CAF50,
+  600: #43A047,
+  700: #388E3C,
+  800: #2E7D32,
+  900: #1B5E20,
+  A100: #B9F6CA,
+  A200: #69F0AE,
+  A400: #00E676,
+  A700: #00C853,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$mat-green-hover: #2E7D32;
+
+
+$mat-red-2: (
+  50: #e84166,
+  100: #e8415c,
+  200: #e84152,
+  300: #e84147,
+  400: #e8413d,
+  500: #E84133,
+  600: #e84129,
+  700: #e8411f,
+  800: #e84115,
+  900: #e8410b,
+  A100: #e8415c,
+  A200: #e84152,
+  A400: #e8413d,
+  A700: #e8411f,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$mat-red-hover: #9e2c07;
+
+$dark-primary-text: rgba(51,51,51, 0.87);
+$dark-secondary-text: rgba(51,51,51, 0.54);
+$dark-disabled-text: rgba(51,51,51, 0.38);
+$dark-dividers: rgba(51,51,51, 0.12);
+$dark-focused: rgba(51,51,51, 0.12);
+
+
+
+//FORMS///////////////////////////////////////////////////////////////////////////////////////
+.input-headline{@include font(16px);
+  label{color:$grey-middle;}
+}
+.mat-radio-outer-circle{border-width:1px!important;}
+
+//BUTTONS///////////////////////////////////////////////////////////////////////////////////////
+.mat-flat-button{@include radius(6px);min-width:200px;@include line(40px);min-height:40px;@include font(16px);font-family:$roboto;font-weight:600;@include transition;}
+.material-icons{@include font(16px);padding-left:15px;}
+.mat-icon{height:auto!important;width:auto!important;}
+.mat-flat-button.mat-primary{min-width:180px;
+  &:hover{background-color:$mat-blue-hover;}
+
+}
+.mat-flat-button.mat-accent{
+  &:hover{background-color:$mat-green-hover;}
+}
+
+.mat-flat-button.mat-warn{
+  &:hover{background-color:$mat-red-hover;}
+}
+
+
+
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$candy-app-primary: mat-palette($mat-active);
+$candy-app-accent:  mat-palette($mat-green, 500, 200, 300);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red-2);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+.unicorn-dark-theme {
+  @include angular-material-theme($dark-theme);
+}

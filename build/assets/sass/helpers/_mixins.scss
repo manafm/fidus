@@ -1,0 +1,223 @@
+/*
+* Mixins
+*/
+
+// IMPORTS
+@import "mixins-flexbox";
+
+// FONCTION POUR REM
+// html { font-size: 62.5%; }
+@function calculateRem($size) {
+	$rem: $size / 10px;
+	@return $rem * 1rem;
+}
+
+// REM FONT SIZE
+@mixin font($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+	//  @include font-size(14px)
+}
+// REM LINE HEIGHT
+@mixin line($size) {
+	line-height: $size;
+	line-height: calculateRem($size);
+	//  @include line-height(14px)
+}
+
+
+// BOX SHADOW
+@mixin shadow($x, $y, $blur, $color) {
+	-webkit-box-shadow: $x $y $blur $color;
+	-moz-box-shadow: $x $y $blur $color;
+	box-shadow: $x $y $blur $color;
+	// @include shadow(0px, 1px, 4px, rgba(0, 0, 0, 1/5))
+}
+
+// ARROW
+ @mixin arrow-btn{
+     background-image:url('../img/arrow-white.svg');
+     background-repeat:no-repeat;
+     background-position:90% center;
+     display:inline-block;
+}
+
+
+
+// BOX SHADOW INSET
+@mixin shadow-inset($x, $y, $blur, $color) {
+	-webkit-box-shadow: inset $x $y $blur $color;
+	-moz-box-shadow: inset $x $y $blur $color;
+	box-shadow: inset $x $y $blur $color;
+	// @include shadow-inset(1px, 1px, 3px, rgba(0, 0, 0, 1/2))
+}
+
+// TEXT SHADOW
+@mixin text-shadow($x, $y, $blur, $color) {
+	-webkit-text-shadow: $x $y $blur $color;
+	-moz-text-shadow: $x $y $blur $color;
+	text-shadow: $x $y $blur $color;
+	// @include text-shadow(1px, 1px, 3px, rgba(0, 0, 0, 1/2))
+}
+
+// BORDER RADIUS
+@mixin radius($radius){
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+}
+
+// BACKGROUND
+@mixin background {
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+// BACKGROUND COVER (when bck img)
+@mixin background-cover {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+// BACKGROUND CONTAIN (when bck img)
+@mixin background-contain {
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-attachment: fixed;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	background-size: contain;
+}
+
+// LINEAR GRADIENT
+@mixin linear-gradient($from, $to) {
+	background: $to; /* Old browsers */
+	background: -moz-linear-gradient($from, $to); /* FF3.6+ */
+	background: -webkit-gradient($from, $to); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient($from, $to); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient($from, $to); /* Opera 11.10+ */
+	background: -ms-linear-gradient($from, $to); /* IE10+ */
+	background: linear-gradient($from, $to); /* W3C */
+}
+
+// OPACITY
+@mixin opacity($opacity) {
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+	-khtml-opacity: $opacity;
+	-ms-filter:"alpha(opacity=$opacity-ie)";
+	-moz-opacity: $opacity;
+	opacity: $opacity;
+	// @include opacity(1/2);
+}
+
+// POSITION ABSOLUTE
+@mixin absolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+	position: absolute;
+	// @include absolute;
+}
+
+// CENTER BLOCK
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	// @include center-block;
+}
+
+// BEFORE
+@mixin before{
+	display: block;
+	position: relative;
+	&:before{
+		display: block;
+		position: absolute;
+		top:0;
+		left: 0;
+		content:" ";
+		height: 1px;
+		width: 1px;
+	}
+	// @include before;
+}
+
+// AFTER
+@mixin after{
+	display: block;
+	position: relative;
+	&:after{
+		display: block;
+		position: absolute;
+		top:0;
+		right: 0;
+		content:" ";
+		height: 1px;
+		width: 1px;
+	}
+	// @include after;
+}
+
+// ELLIPSIS
+@mixin ellipsis{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// RATIO
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
+	}
+	> div {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+// CLEARFIX
+@mixin clearfix{
+	&::before, &::after {
+		content: " ";
+		display: table;
+	}
+	&::after {
+		clear: both;
+	}
+}
+
+
+@mixin transition{
+        -moz-transition: all .2s ease-in;-o-transition: all .2s ease-in; -webkit-transition: all .2s ease-in;transition: all .2s ease-in;
+
+}
+// CENTER EVERYTHING - centrer verticalement et horizontalement
+@mixin center-everything {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    //@include center-everything;
+}
+@mixin zoom-on-hover{
+    transform: scale(1.05);
+}

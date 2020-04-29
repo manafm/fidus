@@ -1,39 +1,87 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "mon-projet": {
-      "projectType": "application",
-      "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mon-projet",
+            "aot": true,
+            "outputPath": "./build",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "extractCss": true,
+            "sourceMap": true,
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "polyfills": "src/polyfills.ts",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/app/i18n"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/sass"
+              ]
+            },
             "styles": [
-              "src/styles.css"
+              {
+                "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "bundleName": "bootstrap"
+              },
+              {
+                "input": "node_modules/primeng/resources/themes/nova-light/theme.css",
+                "bundleName": "primeng-nova-light-theme"
+              },
+              {
+                "input": "node_modules/primeng/resources/primeng.min.css",
+                "bundleName": "primeng"
+              },
+              {
+                "input": "node_modules/primeicons/primeicons.css",
+                "bundleName": "primeicons"
+              },
+              {
+                "input": "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+                "bundleName": "perfect-scrollbar"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/css/all.css",
+                "bundleName": "fontawesome"
+              },
+              {
+                "input": "node_modules/cookieconsent/build/cookieconsent.min.css",
+                "bundleName": "cookieconsent"
+              },
+              {
+                "input": "src/assets/css/spinner.css",
+                "bundleName": "spinner"
+              },
+              {
+                "input": "src/assets/sass/style.scss",
+                "bundleName": "style"
+              }
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
+            ]
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
+              "budgets": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ],
               "optimization": true,
@@ -44,16 +92,26 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "testing": {
               "budgets": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "sourceMap": true,
+              "extractCss": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.testing.ts"
                 }
               ]
             }
@@ -62,11 +120,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mon-projet:build"
+            "browserTarget": "mon-projet:build",
+            "ssl": true,
+            "sourceMap": true,
+            "sslKey": "ssl/localhost.key",
+            "sslCert": "ssl/localhost.cert"
           },
           "configurations": {
             "production": {
               "browserTarget": "mon-projet:build:production"
+            },
+            "testing": {
+              "browserTarget": "mon-projet:build:testing"
             }
           }
         },
@@ -80,45 +145,75 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "src/assets/sass/style.scss"
             ],
-            "scripts": []
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              "src/app/i18n"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        },
+        }
+      }
+    },
+    "mon-projet-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mon-projet:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "mon-projet:serve:production"
-            }
+            "protractorConfig": "./protractor.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
-    }},
-  "defaultProject": "mon-projet"
+    }
+  },
+  "defaultProject": "mon-projet",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  },
+  "cli": {
+    "analytics": "d7749340-dfba-4414-8280-eea8fcdb7db2"
+  }
 }

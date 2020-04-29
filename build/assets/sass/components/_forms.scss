@@ -1,0 +1,72 @@
+
+form{width:100%;
+    .form-group{display:inline-block;padding: 0 15px 30px 15px;margin:0;}
+    //.form-group:last-of-type{padding-bottom:0;}
+    .clearfix{display:block;}
+    label, .radio label, .form-control{font-family:$roboto;@include font(16px);color:$text-color;
+        //span{color:$red;padding-left:5px;}
+    }
+    label.mat-form-field-label{color:$grey-middle;}
+    [class*=" bmd-label"], [class^="bmd-label"]{color:$text-color;}
+    .custom-file-control, .form-control, .is-focused .custom-file-control, .is-focused .form-control{background-image:linear-gradient(0deg,$active 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0)}
+    .infos{font-style:italic;@include font(14px);padding:5px 0;}
+    small{padding-top:5px;}
+    .mat-focused .mat-form-field-required-marker{color:$red;}
+    h2{margin-top:0;display:block;}
+    table{box-shadow:none!important;border:1px solid $border;
+        th{border-bottom:1px solid $border;}
+    }
+
+
+    @media (max-width: $sm){
+        padding:15px 0!important;
+        .row{margin:0;}
+    }
+}
+
+
+// Radio
+.radio{padding-right:20px;}
+.radio .radio__label{padding: 0 0 0 20px;display:block;}
+.radio{display: inline-block;position: relative;margin:10px 0;@include font(14px);@include line(24px);
+    &__input {position: absolute;top: 4px;left: 0;width: 36px;height: 20px;opacity: 0;z-index: 0;}
+
+    // Unchecked
+    &__label {display: block;padding: 0 0 0 24px;cursor: pointer;
+        &:before {content: '';position: absolute;top: 4px;left: 0;width: 16px;height: 16px;background-color: transparent;border: 1px solid $grey-middle;border-radius: 14px;z-index: 1;transition: border-color 0.28s cubic-bezier(.4, 0, .2, 1);}
+        &:after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            background-color: $active;
+            border-radius: 50%;
+            z-index: 2;
+            transform: scale(0, 0);
+            transition: transform 0.28s cubic-bezier(.4, 0, .2, 1);
+        }
+    }
+
+    // Checked
+    &__input:checked + &__label {
+        &:before {
+            border-color: $active;
+        }
+
+        &:after {
+            transform: scale(1, 1);
+        }
+    }
+}
+.legend{display:block;font-size:80%;color:#666666;width:100%;font-style:italic;}
+
+
+//Textarea
+.textarea-wrapper{
+    textarea{background:#efefef;padding:5px!important;min-height:90px;}
+    .mat-form-field-label{padding:5px;}
+    .mat-form-field-underline{display:none;}
+    .mat-form-field-should-float .mat-form-field-label{padding:0;}
+}

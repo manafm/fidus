@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>
+  {{data.title | translate}}
+</h1>
+
+<div mat-dialog-content>
+  {{data.message | translate}}
+</div>
+
+<div mat-dialog-actions class="row">
+
+  <button mat-flat-button color="primary" class="btn mat-accent" [mat-dialog-close]=true>
+    {{'global.yes' | translate}}<mat-icon class="fa fa-check"></mat-icon></button>
+
+  <button mat-flat-button color="warn" class="btn-delete" [mat-dialog-close]=false cdkFocusInitial>
+    {{'global.no' | translate}}<mat-icon class="fa fa-window-close"></mat-icon></button>
+
+</div>
